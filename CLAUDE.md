@@ -69,7 +69,7 @@ If a task seems to require breaking one of these, stop and ask the user instead.
 3. **Interface first**: change [spec/docs/interfaces.md](spec/docs/interfaces.md) before changing msgs/topics/protocols in code.
 4. **Logic in `core/`, ROS in `nodes/`**: pure Python logic must not import `rospy` or do I/O (see [convention.md](spec/docs/convention.md#3-tách-logic-và-ros)).
 5. **Tests first** for `core/` logic; coverage ≥ 80% (see [testing.md](spec/docs/testing.md)).
-6. **Python 3.8 compatible** for anything running in the ROS Noetic container.
+6. **Python 3.10** for all AI code (D-017). How ROS1 Noetic runs on 3.10 is still open (O-007).
 7. **Keep docs in sync** after finishing:
    - tick completed checklist items in `spec/AI_PLAN.md`
    - record new or changed decisions in `spec/docs/decisions.md` (append, never rewrite history)

@@ -1,7 +1,6 @@
 """Shared data schemas for AI modules.
 
-Field types use ``typing.Optional/Tuple/Dict`` (not ``X | None`` / ``tuple[...]``) because pydantic
-evaluates annotations at runtime and the robot container runs Python 3.8.
+Field types use ``typing.Optional/Tuple/Dict`` for one consistent style across the repo.
 
 ``AiEvent`` mirrors the backend payload in spec/docs/interfaces.md §4 (draft v0).
 """

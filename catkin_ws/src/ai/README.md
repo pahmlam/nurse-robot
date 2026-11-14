@@ -1,6 +1,6 @@
 # AI packages
 
-ROS1 Noetic packages for the robot's AI. Design: `spec/` (local only). Python 3.8 compatible.
+ROS1 Noetic packages for the robot's AI. Design: `spec/` (local only). Python 3.10 (D-017).
 
 | Path | Content |
 |---|---|
@@ -16,7 +16,7 @@ Each package: `src/<pkg>/` (logic, no `rospy` in `core/`), `config/`, `tests/`.
 
 ```bash
 cd catkin_ws/src/ai
-uv venv --python 3.8 .venv          # same Python as the Noetic container
+uv venv --python 3.10 .venv         # D-017
 uv pip install --python .venv/bin/python -r requirements-dev.txt
 cp .env.example .env                # never commit .env
 ```
