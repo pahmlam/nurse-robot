@@ -26,15 +26,15 @@ If docs conflict, follow the precedence order in [spec/docs/README.md](spec/docs
 
 ## Repository map
 
-This repo (`nurse-ai`) holds **only the AI part**. The rest of the robot (ROS navigation, firmware) lives in the team repo `nurse`, expected to be cloned as a sibling folder (`../nurse`). Doc links into `../nurse/...` only resolve with that layout.
+This repo (`nurse-ai`) holds **only the AI part**. The rest of the robot (ROS navigation, firmware) lives in the team repo `fw`, expected to be cloned as a sibling folder (`../fw`). Doc links into `../fw/...` only resolve with that layout.
 
 | Path | What | Owner | Agent may edit? |
 |---|---|---|---|
-| `catkin_ws/src/ai/`, `catkin_ws/src/ai_msgs/` | AI code (planned, not created yet) | AI (user) | **Yes** |
+| `catkin_ws/src/ai/`, `catkin_ws/src/ai_msgs/` | AI code (`ai_common`, `ai_perception`, `eval/` exist; dev venv + commands in `catkin_ws/src/ai/README.md`) | AI (user) | **Yes** |
 | `spec/` | Proposal, plan, docs | AI (user) | Yes — keep in sync (see below) |
-| `catkin_ws/src/vendor/moving_server_msgs/` | Vendored copy of the ROS team's action/msg definitions (see `VENDORED.md` there) | ROS team | **No** — only re-sync from `../nurse` |
+| `catkin_ws/src/vendor/moving_server_msgs/` | Vendored copy of the ROS team's action/msg definitions (see `VENDORED.md` there) | ROS team | **No** — only re-sync from `../fw` |
 
-In the sibling repo `../nurse` (read only — reference for contracts, `git pull` to see updates):
+In the sibling repo `../fw` (read only — reference for contracts, `git pull` to see updates):
 
 | Path | What | Owner |
 |---|---|---|
@@ -43,7 +43,7 @@ In the sibling repo `../nurse` (read only — reference for contracts, `git pull
 | `pi_ws/src/reflector_detector/`, `pi_ws/src/xv_11_laser_driver/` | Docking reflector detection, lidar driver | ROS team |
 | `src/`, `calib_motor/`, `arduino/` | ESP32/Arduino firmware, motor calibration | Firmware team |
 
-Never edit `../nurse`. When it changes a contract the AI depends on (`moving_server_msgs`, `/person_tracker/pose` handling, `/esp32/sensor_data` layout, mux priorities), report it to the user and update `spec/docs/interfaces.md` / `architecture.md`. If `moving_server_msgs` changed, re-copy it byte-identical (ROS1 checks message md5) and update `VENDORED.md`.
+Never edit `../fw`. When it changes a contract the AI depends on (`moving_server_msgs`, `/person_tracker/pose` handling, `/esp32/sensor_data` layout, mux priorities), report it to the user and update `spec/docs/interfaces.md` / `architecture.md`. If `moving_server_msgs` changed, re-copy it byte-identical (ROS1 checks message md5) and update `VENDORED.md`.
 
 ## Hard rules
 
@@ -65,7 +65,7 @@ If a task seems to require breaking one of these, stop and ask the user instead.
 ## How to work
 
 1. **Locate the task in [spec/AI_PLAN.md](spec/AI_PLAN.md)** (tier T0–T3, item ID). Prefer T0/T1 items that do not depend on other teams.
-2. **Plan before large changes** (new module, interface change, >3 files): state the plan and wait for confirmation.
+2. **Plan before large changes** (new module, interface change, >3 files): state the workload and ask for plan mode to turn on if needed.
 3. **Interface first**: change [spec/docs/interfaces.md](spec/docs/interfaces.md) before changing msgs/topics/protocols in code.
 4. **Logic in `core/`, ROS in `nodes/`**: pure Python logic must not import `rospy` or do I/O (see [convention.md](spec/docs/convention.md#3-tách-logic-và-ros)).
 5. **Tests first** for `core/` logic; coverage ≥ 80% (see [testing.md](spec/docs/testing.md)).
@@ -80,7 +80,7 @@ If a task seems to require breaking one of these, stop and ask the user instead.
 
 - Dev machine is macOS. Unit tests of `core/` logic must run here. ROS, HailoRT, and camera code only run on the Pi 5 (inside Docker) — do not try to install them on macOS.
 - ROS is ROS1 **Noetic** (catkin, `rospy`). On the Pi 5 it runs in Docker; the ROS team's Docker setup is not in the repo yet (open question O-001).
-- Commands for AI code (once `catkin_ws/src/ai/` exists) are in [spec/docs/testing.md](spec/docs/testing.md#4-lệnh).
+- Commands for AI code are in [spec/docs/testing.md](spec/docs/testing.md#4-lệnh).
 - A CodeGraph index may exist at `.codegraph/`; if the `codegraph` CLI is available, `codegraph explore "<symbol or question>"` is faster than grepping.
 
 ## Language
@@ -94,4 +94,4 @@ If a task seems to require breaking one of these, stop and ask the user instead.
 - Do not commit or push unless the user asks.
 - Conventional Commits (`feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `chore:`, `perf:`, `ci:`).
 - Never commit `.env`, API keys, model files (`.hef`, `.onnx`, `.pt`), datasets, or recordings of real people.
-- `spec/` and `AGENTS.md` are committed in this repo.
+- `spec/` is git-ignored on purpose (kept local, never pushed). Never `git add -f` it. `AGENTS.md` is committed.
