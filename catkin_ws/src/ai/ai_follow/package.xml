@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ai_follow</name>
+  <version>0.1.0</version>
+  <description>Follow-me: largest-bbox person to /person_tracker/pose</description>
+
+  <maintainer email="ai@todo.todo">ai</maintainer>
+  <!-- License pending decision O-006 (spec/docs/decisions.md) -->
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>ai_common</exec_depend>
+</package>

@@ -1,0 +1,11 @@
+# Follow-me defaults. Env override prefix: AI_FOLLOW_ (e.g. AI_FOLLOW_DISTANCE_K).
+# Pixel values are in the image coordinates of PersonState.bbox.
+# fx, cx, distance_k are PLACEHOLDERS until camera calibration (AI_PLAN T1.3).
+fx: 500.0
+cx: 320.0
+distance_k: 600.0          # d [m] = distance_k / bbox_height_px
+min_confidence: 0.5
+min_bbox_height_px: 100.0  # ~person farther than 4 m → ignored; re-tune with distance_k
+follow_distance_m: 1.0     # must equal moving_server person_tracking.follow_distance
+ema_alpha: 0.5
+min_keypoint_score: 0.3

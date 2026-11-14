@@ -5,6 +5,7 @@ ROS1 Noetic packages for the robot's AI. Design: `spec/` (local only). Python 3.
 | Path | Content |
 |---|---|
 | `ai_common/` | Config (YAML + `AI_*` env vars), pydantic schemas, JSON logging |
+| `ai_follow/` | Follow-me: largest-bbox person → (x, y) for `/person_tracker/pose` (core only; ROS node later) |
 | `ai_perception/` | Frame sources (video file replay, USB camera); Hailo runner later |
 | `eval/asr/` | ASR scoring (WER/CER) for the Vietnamese domain test set |
 | `eval/results/` | Benchmark / eval reports (`<date>_<name>.md`) |
