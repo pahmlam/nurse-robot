@@ -1,0 +1,4 @@
+# Defaults for settings shared by all AI nodes. Env vars override (see .env.example).
+robot_id: nurse-01
+log_level: INFO
+# data_dir: /data/ai   # set via AI_DATA_DIR; videos, rosbags, datasets live outside git

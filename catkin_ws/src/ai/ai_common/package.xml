@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ai_common</name>
+  <version>0.1.0</version>
+  <description>Shared config (YAML + env), schemas and JSON logging for the AI nodes</description>
+
+  <maintainer email="ai@todo.todo">ai</maintainer>
+  <!-- License pending decision O-006 (spec/docs/decisions.md) -->
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>python3-yaml</exec_depend>
+  <!-- pydantic v2 is installed with pip from ai/requirements.txt (apt on Ubuntu 20.04 has v1) -->
+</package>

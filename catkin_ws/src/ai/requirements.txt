@@ -1,0 +1,6 @@
+# Runtime Python deps for the AI container (ROS Noetic, Python 3.8).
+# Installed with pip in the Dockerfile: Ubuntu 20.04 apt only ships pydantic v1.
+# numpy / opencv / yaml come from apt in the container (python3-numpy, python3-opencv, python3-yaml).
+pydantic>=2.5,<2.11
+PyYAML>=5.3
+numpy>=1.17

@@ -1,0 +1,40 @@
+# Tool configuration only (pytest, coverage, ruff) for developing the AI packages on a laptop.
+# The ROS packages themselves are built by catkin (package.xml + setup.py in each package).
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+# Default (prepend) import mode: test file basenames must be unique across packages.
+# importlib mode would shadow ai_common/src/ai_common with the top-level ai_common/ folder.
+addopts = "-ra"
+testpaths = ["ai_common/tests", "ai_perception/tests", "eval/asr/tests"]
+pythonpath = ["ai_common/src", "ai_perception/src", "eval/asr"]
+
+[tool.coverage.run]
+source_pkgs = ["ai_common", "ai_perception", "score"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+fail_under = 80
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+    "@abstractmethod",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+extend-exclude = [".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "BLE"]
+# UP006/UP007/UP035/UP045: pydantic evaluates field annotations at runtime, so on Python 3.8
+# model fields must keep typing.Optional / List / Dict / Tuple (see spec/docs/convention.md §2).
+# Use the typing forms everywhere for one consistent style.
+ignore = ["UP006", "UP007", "UP035", "UP045"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["ai_common", "ai_perception", "score"]

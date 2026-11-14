@@ -1,0 +1,7 @@
+# Laptop (macOS) dev + eval deps. Not installed on the robot.
+-r requirements.txt
+opencv-python-headless>=4.5,<4.11
+pytest>=7.4,<9
+pytest-cov>=4.1
+ruff>=0.6
+jiwer>=3.0,<4

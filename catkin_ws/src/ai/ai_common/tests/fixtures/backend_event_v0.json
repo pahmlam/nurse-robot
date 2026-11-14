@@ -1,0 +1,12 @@
+{
+  "event_id": "5f0c...",
+  "robot_id": "nurse-01",
+  "type": "FALL",
+  "severity": 2,
+  "state": "CONFIRMED",
+  "confidence": 0.87,
+  "timestamp": "2026-11-10T14:03:22+07:00",
+  "location": {"frame": "map", "x": 12.4, "y": 3.1, "room_hint": "P102"},
+  "snapshot_ref": "snap/2026-11-10/5f0c.jpg",
+  "details": {"time_on_floor_s": 24, "responded": false}
+}

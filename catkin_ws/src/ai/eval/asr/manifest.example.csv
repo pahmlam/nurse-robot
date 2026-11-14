@@ -1,0 +1,7 @@
+id,text,speaker,noise,audio_path
+cmd-001,Đi theo tôi,spk01,quiet,asr/audio/cmd-001.wav
+cmd-002,Dừng lại,spk02,noisy,asr/audio/cmd-002.wav
+cmd-003,Mở khay số hai,spk01,quiet,asr/audio/cmd-003.wav
+ack-001,Uống rồi,spk03,quiet,asr/audio/ack-001.wav
+sos-001,Cứu tôi với,spk02,noisy,asr/audio/sos-001.wav
+qa-001,Phòng một linh hai ở đâu,spk03,noisy,asr/audio/qa-001.wav
